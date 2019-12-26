@@ -39,6 +39,20 @@ Route::get('/', function () {
 
 // ^In the browser use this to return a name http://freshproject.test/?name=Konou
 
-Route::get('/posts/{post}', function () {
-    return view('post');
+// Route::get('/posts/{post}', function () {
+//     return view('post');
+// });
+
+Route::get('/posts/{post}', function ($post) {
+    $posts = [
+        'my-first-post' => 'Hello, This is my first post',
+        'my-second-post' => 'Now I am getting the hang of this'
+    ];
+
+    return view('post', [
+        'post' => $posts[$post]
+    ]);
 });
+
+
+
