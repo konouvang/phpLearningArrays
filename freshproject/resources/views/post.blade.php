@@ -10,7 +10,9 @@
 </head>
 
 <body>
-    <h1>Hello Work!!!</h1>
+    <h1>My blog post</h1>
+
+    <p>{{ $post }}</p>
 
 
 </body>

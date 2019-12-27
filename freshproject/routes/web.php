@@ -43,11 +43,18 @@ Route::get('/', function () {
 //     return view('post');
 // });
 
+
+// ** This routing for shifting thru an array and a 404 error message if key doesn't exist
+
 Route::get('/posts/{post}', function ($post) {
     $posts = [
         'my-first-post' => 'Hello, This is my first post',
         'my-second-post' => 'Now I am getting the hang of this'
     ];
+
+    if (! array_key_exists($post, $posts)) {
+        abort(404, 'Sorry, that post was not found.');
+    }
 
     return view('post', [
         'post' => $posts[$post]
