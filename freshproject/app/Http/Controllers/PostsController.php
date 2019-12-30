@@ -2,21 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use DB;
+use App\Post;
+
 class PostsController
 {
-    public function show($post)
+    public function show($slug)
     {
-        $posts = [
-            'my-first-post' => 'Hello, This is my first post',
-            'my-second-post' => 'Now I am getting the hang of this'
-        ];
-
-        if (!array_key_exists($post, $posts)) {
-            abort(404, 'Sorry, that post was not found.');
-        }
+        // $post = DB::table('posts')->where('slug', $slug)->first();
+        $post = Post::where('slug', $slug)->firstOrFail();
 
         return view('post', [
-            'post' => $posts[$post]
+            'post' => $post
         ]);
 
     }
